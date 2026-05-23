@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milcipher</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="x7a">
+  <div class="b3c">
+    <div class="h9d">MILCIPHER</div>
+    
+    <textarea id="i" class="t1x" placeholder="Enter classified text..."></textarea>
+    
+    <div class="k2m">
+      <button onclick="a()">Encode</button>
+      <button onclick="b()">Decode</button>
+    </div>
+    
+    <div class="o8z" id="o"></div>
+  </div>
+
+  <script>
+    const M = {"0":"!,W:U0L:","1":"S[]NP_2>","2":"06JTMGB4","3":"0+ CZW67","4":"+EWM.7%!","5":"I2GZ!S&Y","6":"H%8P1>({","7":"=W{N^$TD","8":"1[M5[;9?","9":"A@CNT)^1","A":"GR.,F^N5","B":"EC2?2{B-","C":";G5Y=}C5","D":"ER4V#F1A","E":"-DBS]KYZ","F":"M(4EU515","G":"=)>IU*VH","H":"4>H;&H.P","I":"]<Z8^#AH","J":"*:_M9KHR","K":"}KU)@I@;","L":" 380,8!,","M":"5O>QM&)B","N":"?<$H/7NX","O":"=,-*AJL{","P":"!^Q<T?#C","Q":"L@*{IJ?]","R":"G_A&A9TN","S":"(0DQY<BQ","T":"?+6U 0J7","U":"P7_E8&JL","V":"4Z]3B^PW","W":"AQI9DI[(","X":"V]1_ 6>~","Y":"SHE[R7?_","Z":"QAZO%; ,","!":"$7*;MRQ-","@":"/;[,ETW8","#":"?M{L(Z0/","$":"H@TM-7=^","%":"L!*~!=7E","^":"J=9]X!^3","&":"F$)S:3S2","*":"D> 4=.S^","(":"0IG2T&W9",")":">_XL;I*6","_":"3:0=ZSSQ","+":"|YC[TEQ;","-":"A%&VA#7#","=":"?T~C3I*[","[":"<J GD-[Y","]":">?%8]R<H","{":"@V2T%$[D","}":"-Z5@F3;Q","|":"$Q8HLGN.",";":"U~D9X-+X",":":"*B# $S%I",",":"-=[)16~U",".":" LED{W2L","<":"<VU1 >=U",">":"$--}{~(V","?":")V*_.H&#","/":"=]R|T-]@","~":"LXKB]AM "," ":"L8+[&,(%"};
+    const RM = Object.fromEntries(Object.entries(M).map(([k, v]) => [v, k]));
+
+    function a() {
+      const input = document.getElementById('i').value;
+      let output = '';
+      for (let char of input) {
+        const upperChar = char.toUpperCase();
+        if (M[upperChar]) {
+          output += M[upperChar];
+        } else {
+          output += char; // Leave unsupported characters as they are
+        }
+      }
+      document.getElementById('o').textContent = output;
+    }
+
+    function b() {
+      const input = document.getElementById('i').value.trim();
+      let output = '';
+      let i = 0;
+      while (i < input.length) {
+        const chunk = input.slice(i, i + 8);
+        if (chunk.length === 8 && RM[chunk]) {
+          output += RM[chunk];
+          i += 8;
+        } else {
+          // Check if it's a 1-character passthrough
+          let isPassthrough = true;
+          for(let k in RM) {
+            if(input.startsWith(k, i)) {
+              output += RM[k];
+              i += 8;
+              isPassthrough = false;
+              break;
+            }
+          }
+          if(isPassthrough) {
+            output += input[i];
+            i += 1;
+          }
+        }
+      }
+      document.getElementById('o').textContent = output;
+    }
+  </script>
+</body>
+</html>
