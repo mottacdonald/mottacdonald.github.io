@@ -13,7 +13,7 @@
 .k2m{margin-top:8px;display:flex;gap:8px}
 .k2m button{flex:1;background:#2b2d3a;color:#fff;border:0;padding:8px;border-radius:8px;cursor:pointer}
 .k2m button:hover{background:#3a3d52}
-.o8z{margin-top:10px;min-height:60px;background:#0c0c10;padding:10px;border-radius:8px;word-break:break-word}
+.o8z{margin-top:10px;min-height:60px;background:#0c0c10;padding:10px;border-radius:8px;word-break:break-word;white-space:pre-wrap}
 .i4q{width:100%;margin-top:8px;padding:6px;border-radius:8px;border:1px solid #333;background:#111;color:#fff}
 </style>
 </head>
@@ -28,6 +28,7 @@
   <div class="k2m">
     <button onclick="a()">Encode</button>
     <button onclick="b()">Decode</button>
+    <button onclick="c()">Bruteforce</button>
   </div>
 
   <div class="o8z" id="o"></div>
@@ -56,8 +57,8 @@ else r+="V4U"+c.codePointAt(0).toString(16).toUpperCase().padStart(4,"0");
 document.getElementById("o").textContent=r;
 }
 
-function b(){
-let x=document.getElementById("i").value.trim(),y=g(),r="",i=0;
+function dec(x,y){
+let r="",i=0;
 while(i<x.length){
 if(x.startsWith("V4U",i)){
 r+=String.fromCodePoint(parseInt(x.slice(i+3,i+7),16));
@@ -72,6 +73,16 @@ r+=A[o];
 i+=3;
 }
 }
+return r;
+}
+
+function b(){
+document.getElementById("o").textContent=dec(document.getElementById("i").value.trim(),g());
+}
+
+function c(){
+let x=document.getElementById("i").value.trim(),r="";
+for(let y=0;y<=26;y++)r+=`Key ${y}:\n${dec(x,y)}\n\n`;
 document.getElementById("o").textContent=r;
 }
 </script>
