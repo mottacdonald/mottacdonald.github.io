@@ -1,1 +1,77 @@
-no no no
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Symb4-wk</title>
+
+<style>
+.x7a{font-family:Arial;background:#0f0f14;color:#eaeaea;display:flex;justify-content:center;align-items:center;height:100vh}
+.b3c{width:420px;padding:18px;background:#1a1b22;border-radius:14px;box-shadow:0 10px 30px #0008}
+.h9d{font-size:20px;margin-bottom:10px}
+.t1x{width:100%;height:90px;background:#111;color:#fff;border:1px solid #333;border-radius:8px;padding:8px}
+.k2m{margin-top:8px;display:flex;gap:8px}
+.k2m button{flex:1;background:#2b2d3a;color:#fff;border:0;padding:8px;border-radius:8px;cursor:pointer}
+.k2m button:hover{background:#3a3d52}
+.o8z{margin-top:10px;min-height:60px;background:#0c0c10;padding:10px;border-radius:8px;word-break:break-word}
+.i4q{width:100%;margin-top:8px;padding:6px;border-radius:8px;border:1px solid #333;background:#111;color:#fff}
+</style>
+</head>
+
+<body class="x7a">
+<div class="b3c">
+  <div class="h9d">Symb4-wk</div>
+
+  <textarea id="i"></textarea>
+  <input id="k" class="i4q" type="number" placeholder="key (e.g. 3)">
+
+  <div class="k2m">
+    <button onclick="a()">Encode</button>
+    <button onclick="b()">Decode</button>
+  </div>
+
+  <div class="o8z" id="o"></div>
+</div>
+
+<script>
+const L={"A":"@q!7","B":"#m$2","C":"&z*4","D":"!x^9","E":"%r@1","F":"$p#8","G":"*k&3","H":"^t!6","I":"@v%0","J":"#c*5","K":"&b$7","L":"!n@2","M":"%w^4","N":"$h#9","O":"*y&1","P":"^j!3","Q":"@d%8","R":"#s*6","S":"&f$0","T":"!g@5","U":"%u^7","V":"$a#2","W":"*l&4","X":"^o!9","Y":"@e%1","Z":"#i*3"};
+const N={"0":"!V@3","1":"#V$8","2":"&V*1","3":"^V!7","4":"@V%5","5":"$V#9","6":"*V&2","7":"!V^6","8":"#V@4","9":"&V$0"};
+
+const R1=Object.fromEntries(Object.entries(L).map(([a,b])=>[b,a]));
+const R2=Object.fromEntries(Object.entries(N).map(([a,b])=>[b,a]));
+const A="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const g=_=>((+document.getElementById("k").value||0)%26+26)%26;
+const s=(c,x)=>{let i=A.indexOf(c);return i<0?c:A[(i+x)%26]};
+
+function a(){
+let x=document.getElementById("i").value,y=g(),r="",i=0;
+for(let c of x){
+let u=c.toUpperCase();
+if(L[u])r+=L[s(u,y)];
+else if(N[c])r+=N[c];
+else r+="S4U"+c.codePointAt(0).toString(16).toUpperCase().padStart(4,"0");
+}
+document.getElementById("o").textContent=r;
+}
+
+function b(){
+let x=document.getElementById("i").value.trim(),y=g(),r="",i=0;
+while(i<x.length){
+if(x.startsWith("S4U",i)){
+r+=String.fromCodePoint(parseInt(x.slice(i+3,i+7),16));i+=7;
+}else{
+let t=x.slice(i,i+4);
+if(R2[t])r+=R2[t];
+else if(R1[t]){
+let c=R1[t],p=A.indexOf(c),o=((p-y)%26+26)%26;
+r+=A[o];
+}else r+="?";
+i+=4;
+}
+}
+document.getElementById("o").textContent=r;
+}
+</script>
+</body>
+</html>
