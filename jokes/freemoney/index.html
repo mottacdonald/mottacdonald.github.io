@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>💰 CASH GENERATOR 2025 💰 | 50 QUESTIONS QUIZ</title>
+    <title>💰 1000 GIBBERISH GRID CHALLENGE 💰</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #0a2f0a, #1a4d1a, #0a2f0a);
+            background: linear-gradient(135deg, #0a0a2a, #1a1a4a, #0a0a2a);
             min-height: 100vh;
             padding: 20px;
             position: relative;
@@ -33,12 +33,12 @@
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(12px);
             border-radius: 48px;
-            border: 1px solid rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 100, 200, 0.5);
             overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            background: linear-gradient(135deg, #ff00cc, #6600ff);
             padding: 30px 20px;
             text-align: center;
         }
@@ -46,7 +46,8 @@
         .header h1 {
             font-size: 42px;
             font-weight: 900;
-            color: #1a3a1a;
+            color: white;
+            text-shadow: 0 0 10px #ff00cc;
         }
 
         .content {
@@ -59,13 +60,13 @@
             padding: 20px;
             text-align: center;
             margin-bottom: 25px;
-            border: 1px solid #ffd700;
+            border: 1px solid #ff00cc;
         }
 
         .amount-display {
             font-size: 64px;
             font-weight: 900;
-            color: #ffd700;
+            color: #ff00cc;
         }
 
         .amount-buttons {
@@ -78,16 +79,16 @@
 
         .amount-btn {
             background: #2a2a2a;
-            border: 2px solid #ffd700;
-            color: #ffd700;
+            border: 2px solid #ff00cc;
+            color: #ff00cc;
             padding: 10px 20px;
             border-radius: 40px;
             cursor: pointer;
         }
 
         .amount-btn.selected {
-            background: #ffd700;
-            color: #1a3a1a;
+            background: #ff00cc;
+            color: white;
         }
 
         .input-group {
@@ -95,7 +96,7 @@
         }
 
         .input-group label {
-            color: #ffd700;
+            color: #ff00cc;
             margin-bottom: 8px;
             display: block;
         }
@@ -104,7 +105,7 @@
             width: 100%;
             padding: 14px;
             background: rgba(255,255,255,0.1);
-            border: 1px solid #ffd700;
+            border: 1px solid #ff00cc;
             border-radius: 40px;
             color: white;
         }
@@ -112,8 +113,8 @@
         .btn-generate {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(90deg, #ffd700, #ff8c00);
-            color: #1a3a1a;
+            background: linear-gradient(90deg, #ff00cc, #6600ff);
+            color: white;
             font-weight: 900;
             font-size: 24px;
             border: none;
@@ -135,12 +136,12 @@
 
         .win-item {
             padding: 8px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
+            border-bottom: 1px solid rgba(255,0,204,0.2);
             font-size: 13px;
         }
 
         .win-amount {
-            color: #ffd700;
+            color: #ff00cc;
             font-weight: bold;
         }
 
@@ -148,18 +149,18 @@
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(12px);
             border-radius: 48px;
-            border: 1px solid rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 100, 200, 0.5);
             height: fit-content;
         }
 
         .chat-header {
-            background: #1a3a1a;
+            background: #1a1a4a;
             padding: 20px;
             text-align: center;
         }
 
         .chat-header h3 {
-            color: #ffd700;
+            color: #ff00cc;
         }
 
         .chat-messages {
@@ -176,7 +177,7 @@
         }
 
         .chat-user {
-            color: #ffd700;
+            color: #ff00cc;
             font-weight: bold;
         }
 
@@ -198,12 +199,12 @@
         }
 
         .survey-box {
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
-            background: linear-gradient(145deg, #1a4d1a, #0a2f0a);
+            background: linear-gradient(145deg, #1a1a4a, #0a0a2a);
             border-radius: 48px;
             padding: 30px;
-            border: 3px solid #ffd700;
+            border: 3px solid #ff00cc;
         }
 
         .warning-banner {
@@ -223,7 +224,7 @@
 
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 12px;
             background: #333;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -233,43 +234,69 @@
         .progress-fill {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #ffd700, #ff8c00);
-            transition: width 0.3s;
+            background: linear-gradient(90deg, #ff00cc, #6600ff);
+            transition: width 0.2s;
         }
 
-        .survey-question {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 24px;
-        }
-
-        .survey-question p {
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 15px;
+        .counter-text {
+            text-align: center;
+            color: #ff00cc;
+            margin-bottom: 20px;
             font-size: 18px;
         }
 
-        .survey-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .question-card {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 32px;
+            border: 1px solid #ff00cc;
         }
 
-        .survey-option {
+        .question-text {
+            color: #ff00cc;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 26px;
+            word-break: break-word;
+            text-align: center;
+        }
+
+        /* 4x4 Grid */
+        .grid-4x4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .grid-btn {
             background: #2a2a2a;
-            border: 1px solid #ffd700;
+            border: 2px solid #ff00cc;
             color: white;
-            padding: 10px 20px;
-            border-radius: 40px;
+            padding: 16px 8px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: center;
+            word-break: break-word;
         }
 
-        .survey-option.selected {
-            background: #ffd700;
-            color: #1a3a1a;
+        .grid-btn:hover {
+            background: #ff00cc;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px #ff00cc;
+        }
+
+        .grid-btn.selected {
+            background: #ff00cc;
+            box-shadow: 0 0 20px #ff00cc;
+        }
+
+        .quiz-container {
+            margin-top: 20px;
         }
 
         .quiz-question {
@@ -279,9 +306,22 @@
             border-radius: 24px;
         }
 
-        .quiz-question p {
-            color: #ff66cc;
-            margin-bottom: 15px;
+        .quiz-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .quiz-btn {
+            background: #2a2a2a;
+            border: 2px solid #ff00cc;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
         }
 
         .hidden {
@@ -294,9 +334,9 @@
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #ffd700;
+            width: 60px;
+            height: 60px;
+            border: 4px solid #ff00cc;
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -314,9 +354,12 @@
             font-size: 11px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 700px) {
             .container { grid-template-columns: 1fr; }
             .chat-panel { order: 2; }
+            .question-text { font-size: 18px; }
+            .grid-4x4 { gap: 8px; }
+            .grid-btn { padding: 10px 4px; font-size: 12px; }
         }
     </style>
 </head>
@@ -325,18 +368,17 @@
 <div class="container">
     <div class="generator-panel">
         <div class="header">
-            <h1>💰 CASH GENERATOR 2025 💰</h1>
-            <p>Generate Free PayPal / Venmo / CashApp Money Instantly</p>
+            <h1>💰 1000 GRID CHALLENGE 💰</h1>
+            <p>Click ANY button on the 4x4 grid for EACH question</p>
         </div>
         <div class="content">
             <div class="amount-box">
-                <div class="amount-display" id="amountDisplay">$500</div>
+                <div class="amount-display" id="amountDisplay">$10,000</div>
                 <div class="amount-buttons">
-                    <button class="amount-btn" data-amount="100">$100</button>
-                    <button class="amount-btn selected" data-amount="500">$500</button>
                     <button class="amount-btn" data-amount="1000">$1,000</button>
                     <button class="amount-btn" data-amount="5000">$5,000</button>
-                    <button class="amount-btn" data-amount="10000">$10,000</button>
+                    <button class="amount-btn selected" data-amount="10000">$10,000</button>
+                    <button class="amount-btn" data-amount="50000">$50,000</button>
                 </div>
             </div>
             <div class="input-group">
@@ -347,12 +389,12 @@
                 <label>👤 Full Name</label>
                 <input type="text" id="fullname" placeholder="John Doe" value="John Winner">
             </div>
-            <button class="btn-generate" id="generateBtn">⚡ GENERATE MONEY NOW ⚡</button>
+            <button class="btn-generate" id="generateBtn">⚡ START 1000 QUESTIONS ⚡</button>
             <div class="wins-ticker">
                 <h3>🔥 RECENT WINNERS 🔥</h3>
                 <div class="wins-list" id="winsList">
-                    <div class="win-item">🎉 <strong>Mike_R</strong> won <span class="win-amount">$2,500</span> just now!</div>
-                    <div class="win-item">🎉 <strong>SarahJ</strong> won <span class="win-amount">$1,000</span> 2 min ago</div>
+                    <div class="win-item">🎉 <strong>Mike_R</strong> completed 1000 grid clicks! Won <span class="win-amount">$10,000</span></div>
+                    <div class="win-item">🎉 <strong>SarahJ</strong> finished the challenge! Won <span class="win-amount">$5,000</span></div>
                 </div>
             </div>
         </div>
@@ -360,223 +402,220 @@
     <div class="chat-panel">
         <div class="chat-header">
             <h3>💬 LIVE CHAT 💬</h3>
-            <span style="color:#0f0; font-size:12px;">● 2,847 online</span>
+            <span style="color:#0f0; font-size:12px;">● 12,847 online</span>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="chat-message"><span class="chat-user">💎 DiamondQueen:</span> Just got $500!!! It works!!</div>
-            <div class="chat-message"><span class="chat-user">🔥 CryptoKing:</span> Legit, withdrew to PayPal</div>
+            <div class="chat-message"><span class="chat-user">💎 DiamondQueen:</span> The grid scrambles every time! Crazy</div>
+            <div class="chat-message"><span class="chat-user">🔥 CryptoKing:</span> Just click any button lol</div>
+            <div class="chat-message"><span class="chat-user">🎮 NoobMaster:</span> 672 down, 328 to go</div>
         </div>
     </div>
 </div>
-<footer>⚠️ DEMO ONLY - No actual money will be generated.</footer>
+<footer>⚠️ DEMO ONLY - Click any button on the 4x4 grid for each question ⚠️</footer>
 
 <div id="surveyOverlay" class="survey-overlay">
     <div class="survey-box">
-        <div class="warning-banner">⚠️ REMEMBER YOUR ANSWERS - A RANDOM QUIZ WILL FOLLOW ⚠️</div>
+        <div class="warning-banner">⚠️ REMEMBER YOUR BUTTON CHOICES - A RANDOM QUIZ WILL FOLLOW ⚠️</div>
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div id="questionContainer"></div>
-        <div id="quizContainer" class="hidden"></div>
-        <div id="loadingContainer" class="loading hidden">
+        <div class="counter-text" id="counterText">Question 0 / 1000</div>
+        <div id="questionArea"></div>
+        <div id="quizArea" class="hidden"></div>
+        <div id="loadingArea" class="loading hidden">
             <div class="spinner"></div>
-            <p style="color:#ffd700; margin-top:20px;">Generating your personalized quiz...</p>
+            <p style="color:#ff00cc; margin-top:20px;">Generating your personalized memory quiz...</p>
         </div>
     </div>
 </div>
 
 <script>
-    let selectedAmount = 500;
-    let currentQIndex = 0;
-    let userAnswers = [];
-    let quizQuestions = [];
-    let quizAnswers = [];
-    let currentQuizIndex = 0;
+    let selectedAmount = 10000;
+    let allAnswers = new Array(1000).fill(null);
+    let currentIndex = 0;
+    let questionBuffer = [];
     
-    // Generate 50 progressively weirder questions
-    function generateWeirdQuestions() {
-        const normal = [
-            "What is your favorite color?",
-            "What is your favorite food?",
-            "How many hours do you sleep?",
-            "Do you like dogs or cats?",
-            "What is your favorite season?",
-            "Do you prefer coffee or tea?",
-            "What is your favorite movie genre?",
-            "Do you exercise regularly?",
-            "What is your favorite holiday?",
-            "Do you play video games?"
+    // Pseudo-English gibberish word pool (sounds real but made up)
+    const gibberishPool = [
+        "Floob", "Zargle", "Wompst", "Glimmerwomp", "Snorfle", "Plumbus", "Schmeep", "Fizzlewump",
+        "Blorp", "Crungus", "Spleenwort", "Flargle", "Zoodle", "Wibble", "Floop", "Dingledorf",
+        "Gorp", "Meepmorpp", "Squanch", "Blurble", "Farnsworth", "Glomb", "Trindle", "Whargoul",
+        "Zimble", "Froop", "Blorpish", "Sneef", "Quandor", "Flump", "Greeble", "Zorp",
+        "Flimflam", "Wobblegong", "Crinklebop", "Snorg", "Plink", "Dweezle", "Fandangle", "Glorp",
+        "Splendiferous", "Flabbergaster", "Widdershins", "Bazingle", "Cromulent", "Embiggen", "Kwyjibo", "Smeet"
+    ];
+    
+    // Generate pseudo-English gibberish question
+    function generateGibberishQuestion() {
+        const patterns = [
+            () => `Does the ${randomGibberish()} ${randomGibberish()} the ${randomGibberish()} ${randomGibberish()}?`,
+            () => `Why is ${randomGibberish()} ${randomGibberish()} when ${randomGibberish()} ${randomGibberish()}?`,
+            () => `Have you ever ${randomGibberish()} a ${randomGibberish()} with ${randomGibberish()}?`,
+            () => `What happens if ${randomGibberish()} ${randomGibberish()} the ${randomGibberish()}?`,
+            () => `Is ${randomGibberish()} more ${randomGibberish()} than ${randomGibberish()}?`,
+            () => `Where does the ${randomGibberish()} ${randomGibberish()} during ${randomGibberish()}?`,
+            () => `Can ${randomGibberish()} actually ${randomGibberish()} a ${randomGibberish()}?`,
+            () => `How many ${randomGibberish()} does it take to ${randomGibberish()} a ${randomGibberish()}?`
         ];
-        
-        const weird = [
-            "If a tree falls in the forest and no one is around, does it make a sound?",
-            "How many clouds can you fit in a backpack?",
-            "What does the color blue taste like?",
-            "If you could turn into any vegetable, which one would you be?",
-            "Why do socks disappear in the dryer?",
-            "What is the speed of dark?",
-            "Do fish get thirsty?",
-            "If you throw a rock at the ground, did you miss?",
-            "What happens if you divide by zero?",
-            "Is water wet or does it make things wet?"
-        ];
-        
-        const gibberish = [
-            "when the of is to be or not to be that is the question but what when you is are of?",
-            "why because therefore henceforth thusly?",
-            "how many of the does the what when where with whom?",
-            "if then else maybe perhaps possibly certainly?",
-            "the of and to a in for on with by at from up down?",
-            "what when you is are of the thing that does the stuff?",
-            "do the needful and revert back accordingly?",
-            "kindly please thank you sorry excuse me?",
-            "yes no maybe i don't know can you repeat the question?",
-            "42 is the answer but what was the question again?"
-        ];
-        
-        const questions = [];
-        // Add normal ones first
-        for (let i = 0; i < 15; i++) {
-            questions.push(normal[i % normal.length] + ` (Question ${i+1})`);
-        }
-        // Add weird ones
-        for (let i = 0; i < 20; i++) {
-            questions.push(weird[i % weird.length] + ` 🤔`);
-        }
-        // Add gibberish
-        for (let i = 0; i < 15; i++) {
-            questions.push(gibberish[i % gibberish.length] + ` ${'?'.repeat(i+1)}`);
-        }
-        
-        // Shuffle slightly but keep progression
-        return questions.slice(0, 50);
+        const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+        return pattern();
     }
     
-    const questions = generateWeirdQuestions();
+    function randomGibberish() {
+        return gibberishPool[Math.floor(Math.random() * gibberishPool.length)];
+    }
     
-    // Generate random options for each question
-    function getRandomOptions() {
-        const bases = ["Yes", "No", "Maybe", "Sometimes", "Never", "Always", "Probably", "Definitely", "No idea", "What?", "Blue", "Red", "42", "Both", "Neither"];
-        const shuffled = [...bases];
+    // Get 16 random distinct gibberish words for grid buttons, then shuffle order
+    function getRandomGridButtons() {
+        // Shuffle pool copy
+        const shuffled = [...gibberishPool];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
-        return shuffled.slice(0, 4);
+        // Take first 16
+        let buttons = shuffled.slice(0, 16);
+        // Shuffle again for random order
+        for (let i = buttons.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [buttons[i], buttons[j]] = [buttons[j], buttons[i]];
+        }
+        return buttons;
     }
     
-    function renderQuestion() {
-        const container = document.getElementById('questionContainer');
-        container.innerHTML = '';
-        const q = questions[currentQIndex];
-        const options = getRandomOptions();
-        
-        const div = document.createElement('div');
-        div.className = 'survey-question';
-        div.innerHTML = `
-            <p>❓ ${currentQIndex + 1}/50: ${q}</p>
-            <div class="survey-options" id="currentOptions">
-                ${options.map(opt => `<button class="survey-option" data-opt="${opt}">${opt}</button>`).join('')}
-            </div>
-        `;
-        container.appendChild(div);
-        
-        document.querySelectorAll('.survey-option').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const selected = btn.getAttribute('data-opt');
-                userAnswers[currentQIndex] = selected;
-                // Highlight selected
-                document.querySelectorAll('#currentOptions .survey-option').forEach(b => {
-                    b.classList.remove('selected');
-                });
-                btn.classList.add('selected');
-                // Auto advance after short delay
-                setTimeout(() => {
-                    if (currentQIndex < 49) {
-                        currentQIndex++;
-                        updateProgress();
-                        renderQuestion();
-                    } else {
-                        // All 50 questions done, move to quiz generation
-                        generateQuiz();
-                    }
-                }, 300);
+    // Generate batch of 5 questions (each question object contains question text and its own button set)
+    function generateBatch(count = 5) {
+        const batch = [];
+        for (let i = 0; i < count; i++) {
+            batch.push({
+                text: generateGibberishQuestion(),
+                buttons: getRandomGridButtons()
             });
+        }
+        return batch;
+    }
+    
+    function ensureBuffer(minCount = 3) {
+        while (questionBuffer.length < minCount) {
+            const newBatch = generateBatch(5);
+            questionBuffer.push(...newBatch);
+        }
+    }
+    
+    function getNextQuestion() {
+        ensureBuffer(1);
+        return questionBuffer.shift();
+    }
+    
+    function renderCurrentQuestion() {
+        const area = document.getElementById('questionArea');
+        area.innerHTML = '';
+        
+        if (currentIndex >= 1000) {
+            generateQuiz();
+            return;
+        }
+        
+        const q = getNextQuestion();
+        
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+            <div class="question-text">❓ ${currentIndex + 1}/1000: ${q.text}</div>
+            <div class="grid-4x4" id="gridContainer"></div>
+        `;
+        area.appendChild(card);
+        
+        const gridContainer = document.getElementById('gridContainer');
+        q.buttons.forEach((word, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'grid-btn';
+            btn.textContent = word;
+            btn.setAttribute('data-value', word);
+            btn.addEventListener('click', () => {
+                // Store answer (the word clicked)
+                allAnswers[currentIndex] = word;
+                // Visual feedback
+                document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                // Advance after short delay
+                setTimeout(() => {
+                    currentIndex++;
+                    updateProgress();
+                    renderCurrentQuestion();
+                }, 150);
+            });
+            gridContainer.appendChild(btn);
         });
     }
     
     function updateProgress() {
-        const percent = ((currentQIndex + 1) / 50) * 100;
+        const percent = (currentIndex / 1000) * 100;
         document.getElementById('progressFill').style.width = percent + '%';
+        document.getElementById('counterText').innerText = `Question ${currentIndex} / 1000`;
     }
     
+    // Quiz generation after 1000 questions (simpler, with 4 standard options to avoid complexity)
     function generateQuiz() {
-        document.getElementById('questionContainer').classList.add('hidden');
-        document.getElementById('loadingContainer').classList.remove('hidden');
+        document.getElementById('questionArea').classList.add('hidden');
+        document.getElementById('loadingArea').classList.remove('hidden');
         
-        // Simulate quiz generation
         setTimeout(() => {
-            document.getElementById('loadingContainer').classList.add('hidden');
-            // Generate 10 random quiz questions based on user's answers
-            quizQuestions = [];
-            for (let i = 0; i < 12; i++) {
-                const randomQIndex = Math.floor(Math.random() * 50);
-                const originalQuestion = questions[randomQIndex];
-                const userAnswer = userAnswers[randomQIndex] || "I don't remember";
-                // Create fake options including the real answer and nonsense
-                const fakeOptions = ["Yes", "No", "Maybe", userAnswer, "Something else", "Can't recall", "The opposite", "Blue", "42", "What?"];
-                const shuffled = [...new Set(fakeOptions)].slice(0, 4);
+            document.getElementById('loadingArea').classList.add('hidden');
+            const quizContainer = document.getElementById('quizArea');
+            quizContainer.classList.remove('hidden');
+            quizContainer.innerHTML = '<h3 style="color:#ff00cc; text-align:center; margin-bottom:20px;">🎯 MEMORY QUIZ 🎯</h3><p style="color:white; text-align:center; margin-bottom:20px;">Based on your button clicks, answer these:</p>';
+            
+            // Generate 15 random quiz questions referencing previous button words
+            const quizQuestions = [];
+            for (let i = 0; i < 15; i++) {
+                const randomIdx = Math.floor(Math.random() * 1000);
+                const clickedWord = allAnswers[randomIdx] || "floob";
                 quizQuestions.push({
-                    text: `What did you answer for: "${originalQuestion.substring(0, 60)}..."?`,
-                    correct: userAnswer,
-                    options: shuffled
+                    text: `For question #${randomIdx + 1}, you clicked the button that said "${clickedWord}". What was the actual QUESTION? (Pick any)`,
+                    options: ["Yes", "No", "Ok", "Huh"]
                 });
             }
-            renderQuiz();
+            let quizIdx = 0;
+            
+            function renderQuizQuestion() {
+                if (quizIdx >= quizQuestions.length) {
+                    quizContainer.innerHTML += '<div class="loading"><div class="spinner"></div><p style="color:#ff00cc;">Verifying memory... Redirecting...</p></div>';
+                    setTimeout(() => {
+                        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                    }, 2500);
+                    return;
+                }
+                
+                const q = quizQuestions[quizIdx];
+                const div = document.createElement('div');
+                div.className = 'quiz-question';
+                div.innerHTML = `
+                    <p style="color:#ff00cc; font-weight:bold;">❓ ${quizIdx + 1}/${quizQuestions.length}: ${q.text}</p>
+                    <div class="quiz-options" id="quizOpts${quizIdx}"></div>
+                `;
+                quizContainer.appendChild(div);
+                
+                const optsDiv = document.getElementById(`quizOpts${quizIdx}`);
+                q.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'quiz-btn';
+                    btn.textContent = opt;
+                    btn.addEventListener('click', () => {
+                        btn.style.background = '#00ff00';
+                        setTimeout(() => {
+                            quizIdx++;
+                            renderQuizQuestion();
+                        }, 400);
+                    });
+                    optsDiv.appendChild(btn);
+                });
+            }
+            
+            renderQuizQuestion();
         }, 2000);
     }
     
-    function renderQuiz() {
-        const quizContainer = document.getElementById('quizContainer');
-        quizContainer.classList.remove('hidden');
-        quizContainer.innerHTML = '<h3 style="color:#ff66cc; text-align:center; margin-bottom:20px;">🎯 MEMORY QUIZ 🎯</h3><p style="color:white; text-align:center; margin-bottom:20px;">Let\'s see if you were paying attention!</p>';
-        
-        currentQuizIndex = 0;
-        renderQuizQuestion();
-    }
-    
-    function renderQuizQuestion() {
-        const quizContainer = document.getElementById('quizContainer');
-        if (currentQuizIndex >= quizQuestions.length) {
-            // Quiz complete - redirect to YouTube
-            quizContainer.innerHTML += '<div class="loading"><div class="spinner"></div><p style="color:#ffd700;">Verifying your memory... Redirecting...</p></div>';
-            setTimeout(() => {
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            }, 2500);
-            return;
-        }
-        
-        const q = quizQuestions[currentQuizIndex];
-        const div = document.createElement('div');
-        div.className = 'quiz-question';
-        div.innerHTML = `
-            <p>❓ ${currentQuizIndex + 1}/${quizQuestions.length}: ${q.text}</p>
-            <div class="survey-options" id="quizOptions">
-                ${q.options.map(opt => `<button class="survey-option" data-opt="${opt}">${opt}</button>`).join('')}
-            </div>
-        `;
-        quizContainer.appendChild(div);
-        
-        document.querySelectorAll('#quizOptions .survey-option').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const selected = btn.getAttribute('data-opt');
-                // Check if correct (doesn't matter, always proceed)
-                const isCorrect = (selected === q.correct);
-                btn.style.background = isCorrect ? '#00ff00' : '#ff0000';
-                setTimeout(() => {
-                    currentQuizIndex++;
-                    renderQuizQuestion();
-                }, 600);
-            });
-        });
+    function initBuffer() {
+        questionBuffer = generateBatch(5);
     }
     
     // Amount selection
@@ -589,7 +628,6 @@
         });
     });
     
-    // Generate button
     document.getElementById('generateBtn').addEventListener('click', () => {
         const email = document.getElementById('email').value.trim();
         const name = document.getElementById('fullname').value.trim();
@@ -597,30 +635,35 @@
             alert('Please fill all fields');
             return;
         }
-        document.getElementById('generateBtn').innerText = '⚡ PROCESSING... ⚡';
+        document.getElementById('generateBtn').innerText = '⚡ LOADING 1000 QUESTIONS... ⚡';
         document.getElementById('generateBtn').disabled = true;
         setTimeout(() => {
-            document.getElementById('generateBtn').innerText = '⚡ GENERATE MONEY NOW ⚡';
+            document.getElementById('generateBtn').innerText = '⚡ START 1000 QUESTIONS ⚡';
             document.getElementById('generateBtn').disabled = false;
             document.getElementById('surveyOverlay').style.visibility = 'visible';
-            currentQIndex = 0;
-            userAnswers = [];
+            currentIndex = 0;
+            allAnswers = new Array(1000).fill(null);
+            initBuffer();
             updateProgress();
-            renderQuestion();
-        }, 1500);
+            renderCurrentQuestion();
+        }, 1000);
     });
     
     // Fake wins and chat
-    const fakeNames = ["Mike_R", "SarahJ", "ProGamer99", "LuckyLady", "BigWinner", "CryptoWolf", "Moneymaker", "NinjaCash"];
-    const fakeMessages = ["OMG it works!", "Just got my money!", "Legit generator!", "Thanks devs!", "Withdrew instantly!", "Best site ever!"];
+    const fakeNames = ["Mike_R", "SarahJ", "ProGamer99", "LuckyLady", "BigWinner", "CryptoWolf", "Moneymaker", "NinjaCash", "QueenB", "DiamondHands"];
+    const fakeWinsMessages = ["completed all 1000 grid questions!", "finished the challenge!", "clicked through 1000 buttons!", "survived the gibberish!", "claimed their $10,000!"];
+    const fakeChatMessages = [
+        "The grid scrambles every time!", "I just click randomly", "Question 342 is weird lol", "Almost there!", "Only 800 more to go", "My finger hurts", "Worth it for free money", "The buttons are nonsense", "I love the gibberish words", "Keep clicking!"
+    ];
     
     function addFakeWin() {
         const winsList = document.getElementById('winsList');
         const name = fakeNames[Math.floor(Math.random() * fakeNames.length)];
-        const amount = [100,250,500,1000,2500][Math.floor(Math.random()*5)];
+        const action = fakeWinsMessages[Math.floor(Math.random() * fakeWinsMessages.length)];
+        const amount = [1000,5000,10000,25000][Math.floor(Math.random()*4)];
         const winDiv = document.createElement('div');
         winDiv.className = 'win-item';
-        winDiv.innerHTML = `🎉 <strong>${name}</strong> won <span class="win-amount">$${amount}</span> just now!`;
+        winDiv.innerHTML = `🎉 <strong>${name}</strong> ${action} Won <span class="win-amount">$${amount}</span>!`;
         winsList.prepend(winDiv);
         if (winsList.children.length > 10) winsList.removeChild(winsList.lastChild);
     }
@@ -628,7 +671,7 @@
     function addFakeChat() {
         const chat = document.getElementById('chatMessages');
         const name = fakeNames[Math.floor(Math.random() * fakeNames.length)];
-        const msg = fakeMessages[Math.floor(Math.random() * fakeMessages.length)];
+        const msg = fakeChatMessages[Math.floor(Math.random() * fakeChatMessages.length)];
         const div = document.createElement('div');
         div.className = 'chat-message';
         div.innerHTML = `<span class="chat-user">💬 ${name}:</span> ${msg}`;
@@ -637,8 +680,9 @@
         chat.scrollTop = chat.scrollHeight;
     }
     
-    setInterval(addFakeWin, 6000);
+    setInterval(addFakeWin, 7000);
     setInterval(addFakeChat, 4000);
+    for(let i=0;i<3;i++) setTimeout(addFakeChat, i*800);
 </script>
 </body>
 </html>
