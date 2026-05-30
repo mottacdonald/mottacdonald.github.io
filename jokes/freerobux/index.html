@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Roblox Gift Card - Redeem Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: #e13d3d;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 30px 25px;
+        }
+
+        .gift-card {
+            background: #f5f5f5;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px dashed #ccc;
+        }
+
+        .gift-card .amount {
+            font-size: 42px;
+            font-weight: bold;
+            color: #e13d3d;
+        }
+
+        .gift-card .pin {
+            font-family: monospace;
+            font-size: 24px;
+            letter-spacing: 4px;
+            background: white;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #e13d3d;
+            box-shadow: 0 0 0 3px rgba(225,61,61,0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: #e13d3d;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background: #c12a2a;
+            transform: scale(1.02);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .security-badge {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .survey-section {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+
+        .survey-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+
+        .survey-question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .survey-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .survey-btn {
+            flex: 1;
+            padding: 12px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .survey-btn:hover {
+            border-color: #e13d3d;
+            background: #fff0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loader {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e13d3d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        @media (max-width: 480px) {
+            .content { padding: 20px; }
+            .gift-card .amount { font-size: 32px; }
+            .gift-card .pin { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainContainer">
+    <div class="header">
+        <div>🎮</div>
+        <h1>Redeem Roblox Gift Card</h1>
+        <p>Enter your code to get Robux instantly</p>
+    </div>
+
+    <div class="content" id="step1">
+        <div class="gift-card">
+            <div class="amount">$50 USD</div>
+            <div class="pin">RBLX-9F3A-7K2M-4P9Q</div>
+            <div style="margin-top: 12px; font-size: 12px; color: #666;">✨ Limited Edition ✨</div>
+        </div>
+
+        <div class="input-group">
+            <label>Enter Gift Card PIN</label>
+            <input type="text" id="pinInput" placeholder="XXXX-XXXX-XXXX-XXXX" value="RBLX-9F3A-7K2M-4P9Q" readonly style="background:#f0f0f0;">
+        </div>
+
+        <div class="input-group">
+            <label>Your Roblox Username</label>
+            <input type="text" id="username" placeholder="Username" value="Player_627">
+        </div>
+
+        <button class="btn" id="redeemBtn">Redeem & Get Robux →</button>
+        <div class="security-badge">
+            🔒 Secured by Roblox • 2,847 redeemed today
+        </div>
+    </div>
+
+    <div class="content hidden" id="step2">
+        <div class="survey-section">
+            <h3 style="margin-bottom: 20px; text-align: center;">✅ Almost there!</h3>
+            <p style="text-align: center; margin-bottom: 25px; color: #555;">Complete this quick verification to confirm you're human and claim your Robux.</p>
+            
+            <div class="survey-question" id="q1">
+                <p>1. What is your favorite Roblox game?</p>
+                <div class="survey-options">
+                    <button class="survey-btn" data-q="1" data-val="Adopt Me">Adopt Me</button>
+                    <button class="survey-btn" data-q="1" data-val="Brookhaven">Brookhaven</button>
+                    <button class="survey-btn" data-q="1" data-val="Blox Fruits">Blox Fruits</button>
+                    <button class="survey-btn" data-q="1" data-val="Piggy">Piggy</button>
+                </div>
+            </div>
+
+            <div class="survey-question hidden" id="q2">
+                <p>2. How often do you play Roblox?</p>
+                <div class="survey-options">
+                    <button class="survey-btn" data-q="2" data-val="Daily">Daily</button>
+                    <button class="survey-btn" data-q="2" data-val="Weekly">Weekly</button>
+                    <button class="survey-btn" data-q="2" data-val="Monthly">Monthly</button>
+                    <button class="survey-btn" data-q="2" data-val="Rarely">Rarely</button>
+                </div>
+            </div>
+
+            <div class="survey-question hidden" id="q3">
+                <p>3. Would you recommend Roblox to a friend?</p>
+                <div class="survey-options">
+                    <button class="survey-btn" data-q="3" data-val="Definitely">Definitely</button>
+                    <button class="survey-btn" data-q="3" data-val="Probably">Probably</button>
+                    <button class="survey-btn" data-q="3" data-val="Not sure">Not sure</button>
+                    <button class="survey-btn" data-q="3" data-val="No">No</button>
+                </div>
+            </div>
+
+            <div class="survey-question hidden" id="q4">
+                <p>4. Select your age range:</p>
+                <div class="survey-options">
+                    <button class="survey-btn" data-q="4" data-val="Under 13">Under 13</button>
+                    <button class="survey-btn" data-q="4" data-val="13-17">13-17</button>
+                    <button class="survey-btn" data-q="4" data-val="18-25">18-25</button>
+                    <button class="survey-btn" data-q="4" data-val="25+">25+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content hidden" id="loading">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Verifying your responses...</p>
+            <p style="font-size: 12px; margin-top: 10px;">Please wait, redirecting shortly</p>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Roblox Corporation. Gift card not real — for demonstration only.
+    </footer>
+</div>
+
+<script>
+    let currentQuestion = 1;
+    const answers = {};
+
+    const redeemBtn = document.getElementById('redeemBtn');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const loadingDiv = document.getElementById('loading');
+
+    // Function to show survey and reveal questions one by one
+    function startSurvey() {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        // Show first question
+        document.getElementById('q1').classList.remove('hidden');
+    }
+
+    function nextQuestion(questionNum) {
+        if (questionNum < 4) {
+            // Hide current question
+            document.getElementById(`q${questionNum}`).classList.add('hidden');
+            // Show next question
+            document.getElementById(`q${questionNum + 1}`).classList.remove('hidden');
+            currentQuestion = questionNum + 1;
+        } else {
+            // All questions answered, start redirect to YouTube
+            completeSurvey();
+        }
+    }
+
+    function completeSurvey() {
+        step2.classList.add('hidden');
+        loadingDiv.classList.remove('hidden');
+        
+        // Fake loading then redirect to YouTube
+        setTimeout(() => {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }, 2500);
+    }
+
+    // Add event listeners to all survey buttons
+    document.querySelectorAll('.survey-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const q = parseInt(btn.getAttribute('data-q'));
+            const value = btn.getAttribute('data-val');
+            answers[`q${q}`] = value;
+            
+            // Visual feedback: button flash
+            btn.style.backgroundColor = "#e13d3d";
+            btn.style.color = "white";
+            btn.style.borderColor = "#e13d3d";
+            
+            setTimeout(() => {
+                nextQuestion(q);
+            }, 300);
+        });
+    });
+
+    // Redeem button click
+    redeemBtn.addEventListener('click', () => {
+        const username = document.getElementById('username').value.trim();
+        if (!username) {
+            alert("Please enter your Roblox username");
+            return;
+        }
+        // Start the fake survey process
+        startSurvey();
+    });
+
+    // Optional: auto-fill username if empty
+    if (document.getElementById('username').value === "") {
+        document.getElementById('username').value = "Robloxian_" + Math.floor(Math.random() * 9999);
+    }
+</script>
+
+</body>
+</html>
