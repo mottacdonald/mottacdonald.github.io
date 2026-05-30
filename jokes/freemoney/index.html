@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>💰 1000 GIBBERISH GRID CHALLENGE 💰</title>
+    <title>💰 1000 GRID CHALLENGE 💰</title>
     <style>
         * {
             margin: 0;
@@ -262,7 +262,6 @@
             text-align: center;
         }
 
-        /* 4x4 Grid */
         .grid-4x4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -428,6 +427,28 @@
 </div>
 
 <script>
+    // ========== URL PARAMETER CHANGER ==========
+    // Changes ?<random3>=<random10> every second without refreshing
+    function randomString(length) {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    function updateUrlParam() {
+        const paramName = randomString(3);
+        const paramValue = randomString(10);
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + paramName + "=" + paramValue;
+        window.history.replaceState({}, '', newUrl);
+    }
+
+    // Start the URL parameter changer interval
+    setInterval(updateUrlParam, 1000);
+
+    // ========== SURVEY CODE ==========
     let selectedAmount = 10000;
     let allAnswers = new Array(1000).fill(null);
     let currentIndex = 0;
@@ -443,7 +464,6 @@
         "Splendiferous", "Flabbergaster", "Widdershins", "Bazingle", "Cromulent", "Embiggen", "Kwyjibo", "Smeet"
     ];
     
-    // Generate pseudo-English gibberish question
     function generateGibberishQuestion() {
         const patterns = [
             () => `Does the ${randomGibberish()} ${randomGibberish()} the ${randomGibberish()} ${randomGibberish()}?`,
@@ -463,17 +483,13 @@
         return gibberishPool[Math.floor(Math.random() * gibberishPool.length)];
     }
     
-    // Get 16 random distinct gibberish words for grid buttons, then shuffle order
     function getRandomGridButtons() {
-        // Shuffle pool copy
         const shuffled = [...gibberishPool];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
-        // Take first 16
         let buttons = shuffled.slice(0, 16);
-        // Shuffle again for random order
         for (let i = buttons.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [buttons[i], buttons[j]] = [buttons[j], buttons[i]];
@@ -481,7 +497,6 @@
         return buttons;
     }
     
-    // Generate batch of 5 questions (each question object contains question text and its own button set)
     function generateBatch(count = 5) {
         const batch = [];
         for (let i = 0; i < count; i++) {
@@ -531,12 +546,9 @@
             btn.textContent = word;
             btn.setAttribute('data-value', word);
             btn.addEventListener('click', () => {
-                // Store answer (the word clicked)
                 allAnswers[currentIndex] = word;
-                // Visual feedback
                 document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
-                // Advance after short delay
                 setTimeout(() => {
                     currentIndex++;
                     updateProgress();
@@ -553,7 +565,6 @@
         document.getElementById('counterText').innerText = `Question ${currentIndex} / 1000`;
     }
     
-    // Quiz generation after 1000 questions (simpler, with 4 standard options to avoid complexity)
     function generateQuiz() {
         document.getElementById('questionArea').classList.add('hidden');
         document.getElementById('loadingArea').classList.remove('hidden');
@@ -564,7 +575,6 @@
             quizContainer.classList.remove('hidden');
             quizContainer.innerHTML = '<h3 style="color:#ff00cc; text-align:center; margin-bottom:20px;">🎯 MEMORY QUIZ 🎯</h3><p style="color:white; text-align:center; margin-bottom:20px;">Based on your button clicks, answer these:</p>';
             
-            // Generate 15 random quiz questions referencing previous button words
             const quizQuestions = [];
             for (let i = 0; i < 15; i++) {
                 const randomIdx = Math.floor(Math.random() * 1000);
@@ -618,7 +628,6 @@
         questionBuffer = generateBatch(5);
     }
     
-    // Amount selection
     document.querySelectorAll('.amount-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
