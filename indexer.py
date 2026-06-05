@@ -2,35 +2,40 @@ import json
 import os
 
 ROOT = "."
+OUTPUT_DIR = "__file_index__"
+
+IGNORE = {".git", "__file_index__", "node_modules", ".github"}
 
 
-def scan_dir(path):
+def walk(path):
     items = []
 
     for name in sorted(os.listdir(path)):
-        full = os.path.join(path, name)
-
-        # skip hidden files + script itself
-        if name.startswith(".") or name == "generate_indexes.py":
+        if name in IGNORE or name.startswith("."):
             continue
+
+        full = os.path.join(path, name)
+        rel = os.path.relpath(full, ROOT).replace("\\", "/")
 
         if os.path.isdir(full):
             items.append({"name": name, "type": "dir"})
 
-            # recurse
-            scan_dir(full)
+            walk(full)
 
         else:
             items.append({"name": name, "type": "file"})
 
-    # write index.json
+    os.makedirs(path, exist_ok=True)
+
+    # write index.json per folder
     with open(os.path.join(path, "index.json"), "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2)
 
-    # optional index.html (only if missing)
-    index_html = os.path.join(path, "index.html")
-    if not os.path.exists(index_html):
-        with open(index_html, "w", encoding="utf-8") as f:
+    # ONLY create index.html if it does not already exist
+    index_html_path = os.path.join(path, "index.html")
+
+    if not os.path.exists(index_html_path):
+        with open(index_html_path, "w", encoding="utf-8") as f:
             f.write("""<!doctype html>
 <html>
 <head>
@@ -38,15 +43,15 @@ def scan_dir(path):
   <title>File Browser</title>
 </head>
 <body>
-  <script src="/js/pages-filedisplay.js"></script>
+  <script src="/pages-filedisplay.js"></script>
 </body>
 </html>
 """)
 
 
 def main():
-    scan_dir(ROOT)
-    print("Done generating index.json files")
+    walk(ROOT)
+    print("Done generating index files")
 
 
 if __name__ == "__main__":
