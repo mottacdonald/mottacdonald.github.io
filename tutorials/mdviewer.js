@@ -1,6 +1,5 @@
 class MDViewer {
     static async view(fileUrl) {
-        // 1. Dynamically load the marked.js parser
         if (typeof marked === 'undefined') {
             await new Promise((resolve) => {
                 const script = document.createElement('script');
@@ -9,8 +8,6 @@ class MDViewer {
                 document.head.appendChild(script);
             });
         }
-
-        // 2. Inject default Dark Mode CSS
         if (!document.getElementById('mdviewer-styles')) {
             const style = document.createElement('style');
             style.id = 'mdviewer-styles';
@@ -29,14 +26,10 @@ class MDViewer {
             `;
             document.head.appendChild(style);
         }
-
-        // 3. Fetch the markdown file and render it
         try {
             const response = await fetch(fileUrl);
             if (!response.ok) throw new Error(`Status ${response.status}`);
             const markdownText = await response.text();
-            
-            // Create a container if one doesn't exist, or just write to body
             const container = document.createElement('div');
             container.innerHTML = marked.parse(markdownText);
             document.body.appendChild(container);
