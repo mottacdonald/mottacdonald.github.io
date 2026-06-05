@@ -22,38 +22,42 @@
   }
 
   function render(files, path) {
-    container.innerHTML = "";
-
-    const title = document.createElement("h3");
-    title.textContent = "Index of " + path;
-    container.appendChild(title);
-
     if (path !== "/") {
-      const up = document.createElement("div");
-      up.textContent = "..";
-      up.style.cursor = "pointer";
-      up.onclick = () => {
-        const parent = path.split("/").slice(0, -2).join("/") + "/";
-        load(parent === "//" ? "/" : parent);
-      };
-      container.appendChild(up);
-    }
+      container.innerHTML = "";
 
-    files.forEach(f => {
-      const row = document.createElement("div");
-      row.style.cursor = "pointer";
+      const title = document.createElement("h3");
+      title.textContent = "Index of " + path;
+      container.appendChild(title);
 
-      if (f.type === "dir") {
-        row.textContent = "📁 " + f.name;
-        row.onclick = () => load(path + f.name + "/");
-        row.style.color = "blue";
-      } else {
-        row.textContent = "📄 " + f.name;
-        row.onclick = () => window.open(path + f.name, "_blank");
+      if (path !== "/") {
+        const up = document.createElement("div");
+        up.textContent = "..";
+        up.style.cursor = "pointer";
+        up.onclick = () => {
+          const parent = path.split("/").slice(0, -2).join("/") + "/";
+          load(parent === "//" ? "/" : parent);
+        };
+        container.appendChild(up);
       }
 
-      container.appendChild(row);
-    });
+      files.forEach((f) => {
+        const row = document.createElement("div");
+        row.style.cursor = "pointer";
+
+        if (f.type === "dir") {
+          row.textContent = "📁 " + f.name;
+          row.onclick = () => load(path + f.name + "/");
+          row.style.color = "blue";
+        } else {
+          row.textContent = "📄 " + f.name;
+          row.onclick = () => window.open(path + f.name, "_blank");
+        }
+
+        container.appendChild(row);
+      });
+    } else {
+      container.innerHTML = "no";
+    }
   }
 
   load(currentPath);
