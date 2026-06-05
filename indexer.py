@@ -1,58 +1,75 @@
 import json
 import os
 
-ROOT = "."
-OUTPUT_DIR = "__file_index__"
-
-IGNORE = {".git", "__file_index__", "node_modules", ".github"}
+IGNORE = {".git", ".github", "__pycache__"}
 
 
-def walk(path):
-    items = []
+def build_tree(path):
+    node = {
+        "name": os.path.basename(path) if path != "." else "",
+        "path": "/" + path.replace("\\", "/") if path != "." else "/",
+        "type": "dir",
+        "children": [],
+    }
 
     for name in sorted(os.listdir(path)):
         if name in IGNORE or name.startswith("."):
             continue
 
         full = os.path.join(path, name)
-        rel = os.path.relpath(full, ROOT).replace("\\", "/")
 
         if os.path.isdir(full):
-            items.append({"name": name, "type": "dir"})
-
-            walk(full)
-
+            node["children"].append(build_tree(full))
         else:
-            items.append({"name": name, "type": "file"})
+            node["children"].append(
+                {"name": name, "path": "/" + full.replace("\\", "/"), "type": "file"}
+            )
 
+    return node
+
+
+def write_redirect_index(path):
     os.makedirs(path, exist_ok=True)
 
-    # write index.json per folder
-    with open(os.path.join(path, "index.json"), "w", encoding="utf-8") as f:
-        json.dump(items, f, indent=2)
+    index_path = os.path.join(path, "index.html")
 
-    # ONLY create index.html if it does not already exist
-    index_html_path = os.path.join(path, "index.html")
+    # DO NOT overwrite real pages
+    if os.path.exists(index_path):
+        return
 
-    if not os.path.exists(index_html_path):
-        with open(index_html_path, "w", encoding="utf-8") as f:
-            f.write("""<!doctype html>
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write("""<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>File Browser</title>
+  <meta http-equiv="refresh" content="0; url=/" />
+  <title>Redirecting...</title>
 </head>
 <body>
-  <script src="/pages-filedisplay.js"></script>
+  <script>
+    window.location.href = "/";
+  </script>
 </body>
 </html>
 """)
 
 
-def main():
-    walk(ROOT)
-    print("Done generating index files")
+def walk_dirs_for_redirects(path):
+    for name in os.listdir(path):
+        if name in IGNORE or name.startswith("."):
+            continue
+
+        full = os.path.join(path, name)
+
+        if os.path.isdir(full):
+            write_redirect_index(full)
+            walk_dirs_for_redirects(full)
 
 
-if __name__ == "__main__":
-    main()
+tree = build_tree(".")
+with open("tree.json", "w", encoding="utf-8") as f:
+    json.dump(tree, f, indent=2)
+
+walk_dirs_for_redirects(".")
+
+print("done")

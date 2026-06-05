@@ -6,86 +6,51 @@
   document.body.innerHTML = "";
   document.body.appendChild(container);
 
-  function getPath() {
-    let path = window.location.pathname;
-    if (!path.endsWith("/")) path += "/";
-    return path;
+  let tree = null;
+
+  async function loadTree() {
+    const res = await fetch("/tree.json", { cache: "no-store" });
+    tree = await res.json();
+    render(tree);
   }
 
-  async function load(path) {
-    container.innerHTML = "Loading...";
-
-    try {
-      const res = await fetch(path + "index.json", {
-        cache: "no-store", // ensures browser doesn't reuse stale index.json
-      });
-
-      if (!res.ok) throw new Error("No index.json");
-
-      const files = await res.json();
-      render(files, path);
-    } catch (e) {
-      container.innerHTML = `
-        <div>Could not load <code>${path}</code></div>
-      `;
-      console.error(e);
-    }
-  }
-
-  function render(files, path) {
+  function render(node, pathStack = []) {
     container.innerHTML = "";
 
     const title = document.createElement("h3");
-    title.textContent = "Index of " + path;
+    title.textContent = "/" + pathStack.join("/");
     container.appendChild(title);
 
-    // parent folder link
-    if (path !== "/") {
-      const up = document.createElement("div");
-      up.textContent = "..";
-      up.style.cursor = "pointer";
-      up.style.color = "gray";
+    const children = node.children || [];
 
-      up.onclick = () => {
-        const parts = path.split("/").filter(Boolean);
-        parts.pop();
-        const parent = "/" + (parts.length ? parts.join("/") + "/" : "");
-        load(parent);
-      };
-
-      container.appendChild(up);
-    }
-
-    files.forEach((f) => {
+    children.forEach((child) => {
       const row = document.createElement("div");
       row.style.cursor = "pointer";
       row.style.padding = "2px 0";
 
-      if (f.type === "dir") {
-        row.textContent = "📁 " + f.name;
-        row.style.color = "#2b6cb0";
+      if (child.type === "dir") {
+        row.textContent = "📁 " + child.name;
 
         row.onclick = () => {
-          load(path + f.name + "/");
+          render(child, [...pathStack, child.name]);
         };
       } else {
-        row.textContent = "📄 " + f.name;
-        row.style.color = "#333";
+        row.textContent = "📄 " + child.name;
 
         row.onclick = () => {
-          window.open(path + f.name, "_blank");
+          window.open(child.path, "_blank");
         };
       }
 
       container.appendChild(row);
     });
 
-    if (!files.length) {
+    if (!children.length) {
       const empty = document.createElement("div");
       empty.textContent = "Empty folder";
       container.appendChild(empty);
     }
   }
 
-  load(getPath());
+  loadTree();
 })();
