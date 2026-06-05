@@ -1,0 +1,50 @@
+[
+  {
+    "name": "CNAME",
+    "type": "file"
+  },
+  {
+    "name": "README.md",
+    "type": "file"
+  },
+  {
+    "name": "ciphers",
+    "type": "dir"
+  },
+  {
+    "name": "exploits",
+    "type": "dir"
+  },
+  {
+    "name": "fun",
+    "type": "dir"
+  },
+  {
+    "name": "index.html",
+    "type": "file"
+  },
+  {
+    "name": "indexer.py",
+    "type": "file"
+  },
+  {
+    "name": "jokes",
+    "type": "dir"
+  },
+  {
+    "name": "js",
+    "type": "dir"
+  },
+  {
+    "name": "style.css",
+    "type": "file"
+  },
+  {
+    "name": "synthid",
+    "type": "dir"
+  },
+  {
+    "name": "tutorials",
+    "type": "dir"
+  }
+]
