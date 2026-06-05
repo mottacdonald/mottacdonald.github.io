@@ -19,6 +19,22 @@
       "type": "dir",
       "children": [
         {
+          "name": "29329382392839283928",
+          "path": "/./ciphers/29329382392839283928",
+          "type": "dir",
+          "children": [
+            {
+              "name": "glyph3-wk",
+              "path": "/./ciphers/29329382392839283928/glyph3-wk",
+              "type": "dir",
+              "children": [
+                {
+                  "name": "index.html",
+                  "path": "/./ciphers/29329382392839283928/glyph3-wk/index.html",
+                  "type": "file"
+                }
+              ]
+            },
             {
               "name": "symb4-wk",
               "path": "/./ciphers/29329382392839283928/symb4-wk",
@@ -223,6 +239,11 @@
     {
       "name": "style.css",
       "path": "/./style.css",
+      "type": "file"
+    },
+    {
+      "name": "tree.json",
+      "path": "/./tree.json",
       "type": "file"
     },
     {

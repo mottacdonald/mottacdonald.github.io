@@ -1,44 +1,9 @@
 import json
 import os
 
-IGNORE = {".git", ".github", "__pycache__"}
+IGNORE = {".git", ".github", "__pycache__", "node_modules"}
 
-
-def build_tree(path):
-    node = {
-        "name": os.path.basename(path) if path != "." else "",
-        "path": "/" + path.replace("\\", "/") if path != "." else "/",
-        "type": "dir",
-        "children": [],
-    }
-
-    for name in sorted(os.listdir(path)):
-        if name in IGNORE or name.startswith("."):
-            continue
-
-        full = os.path.join(path, name)
-
-        if os.path.isdir(full):
-            node["children"].append(build_tree(full))
-        else:
-            node["children"].append(
-                {"name": name, "path": "/" + full.replace("\\", "/"), "type": "file"}
-            )
-
-    return node
-
-
-def write_redirect_index(path):
-    os.makedirs(path, exist_ok=True)
-
-    index_path = os.path.join(path, "index.html")
-
-    # DO NOT overwrite real pages
-    if os.path.exists(index_path):
-        return
-
-    with open(index_path, "w", encoding="utf-8") as f:
-        f.write("""<!doctype html>
+REDIRECT_HTML = """<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -51,25 +16,141 @@ def write_redirect_index(path):
   </script>
 </body>
 </html>
-""")
+"""
+
+VIEWER_HTML = """<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>File Browser</title>
+</head>
+<body>
+  <script src="/pages-filedisplay.js"></script>
+</body>
+</html>
+"""
 
 
-def walk_dirs_for_redirects(path):
-    for name in os.listdir(path):
-        if name in IGNORE or name.startswith("."):
+# ---------------- TREE GENERATOR ----------------
+
+
+def build_tree(path):
+    node = {
+        "name": os.path.basename(path) if path != "." else "",
+        "path": "/" + path.replace("\\", "/") if path != "." else "/",
+        "type": "dir",
+        "children": [],
+    }
+
+    try:
+        entries = sorted(os.listdir(path))
+    except:
+        return node
+
+    for e in entries:
+        if e in IGNORE or e.startswith("."):
             continue
 
-        full = os.path.join(path, name)
+        full = os.path.join(path, e)
 
         if os.path.isdir(full):
-            write_redirect_index(full)
-            walk_dirs_for_redirects(full)
+            node["children"].append(build_tree(full))
+        else:
+            node["children"].append(
+                {"name": e, "path": "/" + full.replace("\\", "/"), "type": "file"}
+            )
+
+    return node
 
 
-tree = build_tree(".")
-with open("tree.json", "w", encoding="utf-8") as f:
-    json.dump(tree, f, indent=2)
+# ---------------- INDEX.HTML GENERATION ----------------
 
-walk_dirs_for_redirects(".")
 
-print("done")
+def generate_index_htmls():
+    """
+    SAFE MODE:
+    - only creates root index.html
+    - does NOT overwrite existing files
+    """
+
+    root_index = "index.html"
+
+    if not os.path.exists(root_index):
+        with open(root_index, "w", encoding="utf-8") as f:
+            f.write(VIEWER_HTML)
+
+    print("root index.html ensured")
+
+
+# ---------------- TREE ----------------
+
+
+def generate_tree():
+    tree = build_tree(".")
+
+    with open("tree.json", "w", encoding="utf-8") as f:
+        json.dump(tree, f, indent=2)
+
+    print("tree.json generated")
+
+
+# ---------------- FIX REDIRECT ----------------
+
+
+def fix_redirect():
+    removed = 0
+
+    for root, dirs, files in os.walk("."):
+        for file in files:
+            if file != "index.html":
+                continue
+
+            path = os.path.join(root, file)
+
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    content = f.read().strip()
+
+                if content == REDIRECT_HTML.strip():
+                    os.remove(path)
+                    removed += 1
+
+            except:
+                continue
+
+    print(f"removed {removed} redirect index.html files")
+
+
+# ---------------- CLI ----------------
+
+
+def main():
+    print("""
+Commands:
+1      -> generate index.html (root viewer only)
+2      -> generate tree.json
+temp1  -> remove redirect index.html files
+exit   -> quit
+""")
+
+    while True:
+        cmd = input("> ").strip()
+
+        if cmd == "1":
+            generate_index_htmls()
+
+        elif cmd == "2":
+            generate_tree()
+
+        elif cmd == "temp1":
+            fix_redirect()
+
+        elif cmd == "exit":
+            break
+
+        else:
+            print("unknown command")
+
+
+if __name__ == "__main__":
+    main()
