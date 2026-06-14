@@ -32,13 +32,14 @@
         row.textContent = "📁 " + child.name;
 
         row.onclick = () => {
-          render(child, [...pathStack, child.name]);
+          let path = child.path.replace(/\/+$/, "");
+          window.location.href = path + "/";
         };
       } else {
         row.textContent = "📄 " + child.name;
 
         row.onclick = () => {
-          window.open(child.path, "_blank");
+          window.location.href = child.path;
         };
       }
 
